@@ -1,11 +1,11 @@
 "use client";
 
 import { useForm, FormProvider } from 'react-hook-form';
-import { InputCustom } from '@/components/Atons';
 import { redirect } from 'next/navigation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { formSchema } from './formredef-scheme';
 import { IFormInputRedem, sendRedemServerSideProps } from '../functions-request';
+import { InputCustom } from '@/components/InputCustom';
 
 export const FormRedef = () => {
   const methods = useForm<IFormInputRedem>({ resolver: yupResolver(formSchema) , mode: 'onChange', defaultValues: { token: '', password: '', confirpassword: '' } });

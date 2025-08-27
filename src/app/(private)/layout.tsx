@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import  "./../globals.css";
+import "../globals.css";
 import { ThemeInitializer } from "@/components/ThemeInitializer";
 import { ToastContainer } from "react-toastify";
-import { Header } from "@/components/Shared";
-import { MainLayout } from "@/components/Shared/Layouts/Main";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,23 +31,34 @@ function getThemeFromCookie(cookie?: string): "light" | "dark" {
   return match ? (match[1] as "light" | "dark") : "light";
 }
 
-export default function RootLayout({ children, cookies }: RootLayoutProps) {
+export default async function RootLayout({
+  children,
+  cookies,
+}: RootLayoutProps) {
   const theme = getThemeFromCookie(cookies);
+  const session = await getServerSession();
+
+  const user = session?.user;
+  if (!session) {
+    redirect("/");
+  }
 
   return (
-    <html lang="pt-BR" className={theme === "dark" ? "dark" : ""} data-testid="root-layout">
+    <html lang="pt-BR" className={theme === "dark" ? "dark" : ""} data-testid="root-layout-manage">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <MainLayout>
-          <Header />
-          <>
-            <ThemeInitializer />
-            <ToastContainer />
-          </>
-          {children}
-          <>
-          {/* footer */}
-          </>
-        </MainLayout>
+        {/* <Header bg={"white"}>
+                    <Logo />
+                    <NavBar />
+                </Header> */}
+        <ThemeInitializer />
+        <ToastContainer />
+        {/* <LayoutManager>
+                    <SideBar username={user?.name ?? "guest"} img={user?.image ?? "avatar.svg"} /> */}
+        {/* <LoadContext> */}
+        {children}
+        {/* </LoadContext> */}
+        {/* </LayoutManager> */}
+        {/* <Footer /> */}
       </body>
     </html>
   );

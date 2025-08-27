@@ -1,12 +1,12 @@
 "use client";
 
 import { useForm, FormProvider } from 'react-hook-form';
-import { InputCustom } from '@/components/Atons';
 import { redirect } from 'next/navigation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { formSchema } from './formregister-scheme';
 import { toast } from 'react-toastify';
 import { IFormInput, registerUsuarioServerSideProps } from '../functions-request';
+import { InputCustom } from '@/components/InputCustom';
 
 export const FormRegister = () => {
   const methods = useForm<IFormInput>({ resolver: yupResolver(formSchema), mode: 'onChange', defaultValues: { name: '', email: '', telefone: '', cpf: '', password: '', repassword: '' } });
