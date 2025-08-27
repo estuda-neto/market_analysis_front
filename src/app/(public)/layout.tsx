@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { ThemeInitializer } from "@/components/ThemeInitializer";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({ children, cookies }: RootLayoutProps) {
     <html lang="pt-BR" className={theme === 'dark' ? 'dark' : ''} data-testid="root-layout">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeInitializer/>
+        <ToastContainer />
         {children}
       </body>
     </html>

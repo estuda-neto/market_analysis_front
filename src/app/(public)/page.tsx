@@ -4,7 +4,6 @@ import { ToggleButtonTheme } from "@/components/ToggleButtonTheme";
   return (
     <div className="w-full h-full">
       <h2>home</h2>
-      <ToggleButtonTheme />
     </div>
   );
 }
