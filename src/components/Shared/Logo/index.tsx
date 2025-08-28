@@ -1,9 +1,12 @@
-import Image from "next/image";
+import clsx from "clsx";
+import styles from "./logo.module.css";
+
+import { Image } from "../Image";
 
 export const Logo: React.FC = () => {
   return (
-    <div className="flex items-center justify-center">
-      <Image src="/images/logo.jpg" alt="Logo da aplicação." fill  className="object-contain h-10 w-auto" />
+    <div className={clsx(`${styles.item}`)}>
+      <Image src={"/images/logo1.png"} alt={"Logo da aplicação."} className="contain" />
     </div>
   );
 };

@@ -1,0 +1,41 @@
+.navcontainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.ulink {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navItem {
+  margin: 0 8px;
+  font-weight: 500;
+  font-size: 1rem;
+  display: inline-block;
+}
+
+/* Estilo do link dentro do navItem */
+.navItem a {
+  color: #333;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover para dar feedback visual */
+.navItem a:hover,
+.navItem a:focus {
+  background-color: #ddd;
+  color: #000;
+  outline: none;
+}
+
+/* Se quiser, pode adicionar estado ativo */
+.navItem a.active {
+  background-color: #aaa;
+  color: white;
+}

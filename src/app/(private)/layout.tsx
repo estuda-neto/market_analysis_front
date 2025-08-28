@@ -31,10 +31,7 @@ function getThemeFromCookie(cookie?: string): "light" | "dark" {
   return match ? (match[1] as "light" | "dark") : "light";
 }
 
-export default async function RootLayout({
-  children,
-  cookies,
-}: RootLayoutProps) {
+export default async function RootLayout({children,cookies}: RootLayoutProps) {
   const theme = getThemeFromCookie(cookies);
   const session = await getServerSession();
 

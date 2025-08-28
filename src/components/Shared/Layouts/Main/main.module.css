@@ -1,0 +1,24 @@
+.layout {
+    display: grid;
+    min-height: 100vh;
+    /* Garante que ocupe ao menos a altura da tela */
+    grid-template-rows: auto auto 1fr auto;
+    /* 4 linhas: header, toast, main, footer */
+}
+
+.header {
+    max-height: 200px;
+}
+
+.toast {
+    min-height: 1px;
+    background-color: white;
+}
+
+.main {
+    min-height: 60vh;
+}
+
+.footer {
+    height: 350px;
+}

@@ -1,0 +1,166 @@
+.header {
+  width: 100%;
+  padding: 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  position: relative;
+  z-index: 40;
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoWrap {
+  display: inherit;
+  align-items: center;
+  margin-right: auto;
+}
+
+.containerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* desktop nav & form visible on wide screens */
+.desktopNav {
+  display: block;
+}
+
+.desktopForm {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* nav links (default desktop horizontal) */
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.navItem a {
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+.navItem a:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* mobile toggle button (hidden on desktop) */
+.mobileToggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* backdrop when mobile menu open */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 49;
+}
+
+/* mobile panel (slide from right) */
+.mobilePanel {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 85%;
+  max-width: 360px;
+  height: 100vh;
+  background: white;
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+  transition: right 0.28s ease;
+  z-index: 50;
+  overflow-y: auto;
+  display: none;
+}
+
+.mobilePanel.open {
+  right: 0;
+  display: block;
+}
+
+.mobilePanelInner {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100vh;
+}
+
+.mobileFormWrapper {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* mobile nav links (vertical) */
+.mobileNavLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Mobile: <= 767px - mostra hamburger e painel, esconde nav/form desktop */
+@media (max-width: 767px) {
+
+  .desktopNav, .desktopForm {
+    display: none;
+  }
+
+  .mobileToggle {
+    display: inline-flex;
+  }
+
+  .mobilePanel {
+    display: block;
+  }
+
+  .navLinks {
+    gap: 12px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+   .desktopNav, .desktopForm {
+    display: none;
+  }
+
+  .mobileToggle {
+    display: inline-flex;
+  }
+
+  .mobilePanel {
+    display: block;
+  }
+
+  .navLinks {
+    gap: 12px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .headerInner {
+    padding: 8px 0;
+  }
+}

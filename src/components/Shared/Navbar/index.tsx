@@ -1,15 +1,20 @@
+import clsx from "clsx";
+import styles from "./navbar.module.css";
 import Link from "next/link";
 
-type NavBarProps = { isMobile?: boolean; onLinkClick?: () => void;};
+type NavBarProps = {
+  isMobile?: boolean;
+  onLinkClick?: () => void;
+};
 
 export const NavBar: React.FC<NavBarProps> = ({ isMobile, onLinkClick }) => {
   const items = [{ label: "About", href: "/about" }];
 
   return (
-    <ul className={isMobile? "flex flex-col gap-4": "flex items-center gap-6"}>
+    <ul className={clsx(styles.navLinks, isMobile && styles.mobileNavLinks)}>
       {items.map((item) => (
-        <li key={item.href}>
-          <Link href={item.href} onClick={() => onLinkClick?.()} className="font-medium px-2 py-1 rounded-md hover:bg-black/5 transition">
+        <li key={item.href} className={styles.navItem}>
+          <Link href={item.href} onClick={() => onLinkClick?.()}>
             {item.label}
           </Link>
         </li>
