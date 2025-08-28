@@ -5,7 +5,7 @@ module.exports = {
   },
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
-    "\\.(css|scss|sass)$": "identity-obj-proxy" // se importar CSS nos componentes
+    "\\.(css|scss|sass)$": "identity-obj-proxy",
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],

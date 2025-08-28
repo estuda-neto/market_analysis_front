@@ -3,3 +3,6 @@
     align-items: center;
     justify-content: center;
 }
+.item > img  {
+    object-fit: contain;
+}

@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { ToggleButtonTheme } from '@/components/ToggleButtonTheme';
 
-const meta = {
+const meta:Meta<typeof ToggleButtonTheme> = {
   title: 'Components/ToggleButtonTheme',
   component: ToggleButtonTheme,
   parameters: {layout: 'centered'},
   tags: ['autodocs'],
-} satisfies Meta<typeof ToggleButtonTheme>;
-
+};
 export default meta;
 
 

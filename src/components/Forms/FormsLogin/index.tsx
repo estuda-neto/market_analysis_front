@@ -1,32 +1,26 @@
 import clsx from "clsx";
 import styles from "./formlogin.module.css";
-import { useForm } from "react-hook-form";
-// import { ButtonDeslogar } from "../../ButtonDeslogar";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useId } from "react";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+// import { ButtonDeslogar } from "../../ButtonDeslogar";
 
 type TypeLoginData = { email: string; password: string };
 
 export const FormLogin: React.FC = () => {
-  // const navigate = useNavigate();
-  // const { pathname } = useLocation();
   const {register, handleSubmit, formState: { errors }} = useForm<TypeLoginData>();
   const idEmail = useId();
   const idPassword = useId();
 
-  const handleSubmitForm = async (dataForm: TypeLoginData) => {
-    // try {
-    //   const user = await UserRepository.signIn(dataForm.email, dataForm.password);
-
-    //   if (user) {
-    //     navigate("/manager");
-    //   } else {
-    //     toast.error("Email ou senha inválidos!");
-    //   }
-    // } catch (error: unknown) {
-    //   toast.error(error instanceof Error ? error.message : "Erro ao autenticar");
-    // }
+  const handleSubmitForm = async (data: TypeLoginData) => {
+    try {
+      signIn("credentials", { ...data, callbackUrl: "/manager" });
+    }catch (error: unknown) {
+      toast.error("Email ou senha inválidos!");
+      toast.error(error instanceof Error ? error.message : "Erro ao autenticar");
+    }
   };
 
   // if (pathname.includes("/manager")) {
