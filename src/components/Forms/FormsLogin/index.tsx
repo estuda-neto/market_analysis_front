@@ -1,10 +1,11 @@
 import clsx from "clsx";
-import styles from "./formlogin.module.css";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useId } from "react";
-import { toast } from "react-toastify";
 import Link from "next/link";
+import {useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
+import { useId } from "react";
+import styles from "./formlogin.module.css";
+import { SubButton } from "@/components/Shared/SubButton";
 // import { ButtonDeslogar } from "../../ButtonDeslogar";
 
 type TypeLoginData = { email: string; password: string };
@@ -40,10 +41,8 @@ export const FormLogin: React.FC = () => {
         <input id={idPassword} {...register("password", { required: "Este campo é obrigatório" })} type="password" className={clsx(styles.input)}/>
         {errors.password && <span>{errors.password.message}</span>}
       </div>
-
-      <button type="submit" className={clsx(styles.button)}>
-        Entrar
-      </button>
+      <SubButton label={"Entrar"} />
+      
 
       <div className={styles.cadastro}>
         Não tem uma conta?

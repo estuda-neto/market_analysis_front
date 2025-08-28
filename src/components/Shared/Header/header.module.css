@@ -1,7 +1,11 @@
 .header {
   width: 100%;
   padding: 10px 20px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+              rgba(0, 0, 0, 0.12) 0px -12px 30px,
+              rgba(0, 0, 0, 0.12) 0px 4px 6px,
+              rgba(0, 0, 0, 0.17) 0px 12px 13px,
+              rgba(0, 0, 0, 0.09) 0px -3px 5px;
   position: relative;
   z-index: 40;
 }
@@ -26,7 +30,7 @@
   gap: 20px;
 }
 
-/* desktop nav & form visible on wide screens */
+/* Desktop nav */
 .desktopNav {
   display: block;
 }
@@ -37,7 +41,7 @@
   align-items: center;
 }
 
-/* nav links (default desktop horizontal) */
+/* Nav links */
 .navLinks {
   list-style: none;
   display: flex;
@@ -58,9 +62,9 @@
   background: rgba(0, 0, 0, 0.03);
 }
 
-/* mobile toggle button (hidden on desktop) */
+/* Mobile toggle */
 .mobileToggle {
-  display: none;
+  display: inline-flex;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -70,7 +74,7 @@
   justify-content: center;
 }
 
-/* backdrop when mobile menu open */
+/* Backdrop */
 .backdrop {
   position: fixed;
   inset: 0;
@@ -78,7 +82,7 @@
   z-index: 49;
 }
 
-/* mobile panel (slide from right) */
+/* Mobile panel */
 .mobilePanel {
   position: fixed;
   top: 0;
@@ -86,17 +90,15 @@
   width: 85%;
   max-width: 360px;
   height: 100vh;
-  background: white;
+  background: var(--bg-color);
   box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
   transition: right 0.28s ease;
   z-index: 50;
   overflow-y: auto;
-  display: none;
 }
 
 .mobilePanel.open {
   right: 0;
-  display: block;
 }
 
 .mobilePanelInner {
@@ -115,44 +117,18 @@
   align-items: center;
 }
 
-/* mobile nav links (vertical) */
+/* Nav links mobile */
 .mobileNavLinks {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-/* Mobile: <= 767px - mostra hamburger e painel, esconde nav/form desktop */
-@media (max-width: 767px) {
-
-  .desktopNav, .desktopForm {
+/* Breakpoints */
+@media (max-width: 1023px) {
+  .desktopNav,
+  .desktopForm {
     display: none;
-  }
-
-  .mobileToggle {
-    display: inline-flex;
-  }
-
-  .mobilePanel {
-    display: block;
-  }
-
-  .navLinks {
-    gap: 12px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-   .desktopNav, .desktopForm {
-    display: none;
-  }
-
-  .mobileToggle {
-    display: inline-flex;
-  }
-
-  .mobilePanel {
-    display: block;
   }
 
   .navLinks {

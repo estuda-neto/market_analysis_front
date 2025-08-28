@@ -10,8 +10,18 @@ import { ToggleButtonTheme } from "@/components/ToggleButtonTheme";
 
 export const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
 
+  // Detecta largura da tela
+  useEffect(() => {
+    const checkSize = () => setIsMobile(window.innerWidth < 1024);
+    checkSize();
+    window.addEventListener("resize", checkSize);
+    return () => window.removeEventListener("resize", checkSize);
+  }, []);
+
+  // Fecha no ESC
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
@@ -20,6 +30,7 @@ export const Header: React.FC = () => {
     return () => document.removeEventListener("keydown", onKey);
   }, []);
 
+  // Fecha clicando fora do painel
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       if (!open) return;
@@ -39,6 +50,7 @@ export const Header: React.FC = () => {
         </div>
 
         <div className={styles.containerHeader}>
+          {/* Menu desktop */}
           <nav className={styles.desktopNav}>
             <NavBar onLinkClick={() => setOpen(false)} />
           </nav>
@@ -47,26 +59,42 @@ export const Header: React.FC = () => {
             <FormLogin />
           </div>
 
-          {/* Botão mobile (aparece só em telas pequenas) */}
-          <button className={styles.mobileToggle} onClick={() => setOpen((s) => !s)} aria-expanded={open} aria-label={open ? "Fechar menu" : "Abrir menu"}>
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          {/* Botão mobile */}
+          {isMobile && (
+            <button
+              className={styles.mobileToggle}
+              onClick={() => setOpen((s) => !s)}
+              aria-expanded={open}
+              aria-label={open ? "Fechar menu" : "Abrir menu"}
+            >
+              {open ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          )}
         </div>
       </div>
 
-      {/* Backdrop (só aparece quando o menu mobile está aberto) */}
-      {open && (<div className={styles.backdrop} onClick={() => setOpen(false)} />)}
+      {/* Backdrop só em mobile */}
+      {open && isMobile && (
+        <div className={styles.backdrop} onClick={() => setOpen(false)} />
+      )}
 
       {/* Painel mobile */}
-      <aside ref={panelRef} className={clsx(styles.mobilePanel, open && styles.open)} role="dialog" aria-hidden={!open}>
-        <div className={styles.mobilePanelInner}>
-          <NavBar isMobile onLinkClick={() => setOpen(false)} />
-          <div className={styles.mobileFormWrapper}>
-            <ToggleButtonTheme />
-            <FormLogin />
+      {isMobile && (
+        <aside
+          ref={panelRef}
+          className={clsx(styles.mobilePanel, open && styles.open)}
+          role="dialog"
+          aria-hidden={!open}
+        >
+          <div className={styles.mobilePanelInner}>
+            <NavBar isMobile onLinkClick={() => setOpen(false)} />
+            <div className={styles.mobileFormWrapper}>
+              <ToggleButtonTheme />
+              <FormLogin />
+            </div>
           </div>
-        </div>
-      </aside>
+        </aside>
+      )}
     </header>
   );
 };
