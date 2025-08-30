@@ -1,22 +1,22 @@
 import { jwtDecode } from 'jwt-decode';
 
 export interface IObjectClaims {
-    Name: string; Image: string; Email: string; Role: string | string[]; // roles podem ser um único valor ou uma array
-}
+    id: string;
+    username: string;
+    email: string;
+    imagem: string;
+    roles: string | string[];
+};
 
 export const decoderTokenToClaims = (token: string): Partial<IObjectClaims> | null => {
     if (token) {
         try {
             const decodedToken = jwtDecode(token) as any;
-            // Acesse as claims
-            const userRoles = decodedToken.Role;
-            return { Name: decodedToken.Name, Image: decodedToken.Image, Email: decodedToken.Email, Role: decodedToken.Role };
+            return {id: decodedToken.id, username: decodedToken.username,  email: decodedToken.email,  imagem: decodedToken.imagem,  roles: decodedToken.roles};
         } catch (error) {
-            console.error('Erro ao decodificar o token:', error);
             return null;
         }
     } else {
-        console.log('Token não encontrado foda-se');
         return null;
     }
 }

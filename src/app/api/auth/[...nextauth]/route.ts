@@ -4,11 +4,11 @@ import { cookies } from "next/headers";
 import { decoderTokenToClaims } from "../../decode-claims";
 import { requestAuthenticationUser,IAuthenticateUser } from "../../request-api";
 
-type User = { id: string; name?: string | null; email?: string | null; image?: string; role?: string | string[] | null; };
+type User = { id: string;name?: string | null;email?: string | null;image?: string | null;};
 
 const handler = NextAuth({
     pages: {
-        signIn: "/login",
+        signIn: "/",
     },
     providers: [
         CredentialsProvider({
@@ -31,11 +31,10 @@ const handler = NextAuth({
                     const decodedClaims = decoderTokenToClaims(resposta.token);
 
                     return {
-                        id: "",
-                        name: decodedClaims?.Name,
-                        email: decodedClaims?.Email,
-                        image: decodedClaims?.Image,
-                        role: decodedClaims?.Role
+                        id: decodedClaims?.id ?? "unknown",
+                        name: decodedClaims?.username ?? null,
+                        email: decodedClaims?.email ?? null,
+                        image: decodedClaims?.imagem ?? null,
                     }
                 }
                 return null;

@@ -1,7 +1,7 @@
 export interface IAuthenticateUser { email: string | undefined; password: string | undefined; }
 
 const requestAuthenticationUser = async (user: IAuthenticateUser) => {
-    const resposta = await fetch("http://localhost:8080/auth/login", {
+    const resposta = await fetch("http://localhost:8000/auth/login", {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"

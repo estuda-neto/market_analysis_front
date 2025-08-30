@@ -1,12 +1,13 @@
 "use client";
+
 import styles from "./manager.module.css";
 import { useState } from "react";
 import { AlignJustifyIcon, AppleIcon, BadgeQuestionMarkIcon, BanknoteIcon, EyeIcon, HouseIcon, LockIcon, LogOutIcon, MessageCircleIcon, MessageCircleMoreIcon, SearchIcon, SettingsIcon, ShoppingCartIcon, UserIcon} from "lucide-react";
 import Image from "next/image";
 
 export default function Manager() {
-  const [menuActive, setMenuActive] = useState(false); // controla se o menu está ativo
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null); // controla qual item está "hovered"
+  const [menuActive, setMenuActive] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const navItems = [
     { icon: <AppleIcon size={24} />, title: "Brand Name" },
@@ -19,13 +20,24 @@ export default function Manager() {
     { icon: <LogOutIcon size={24} />, title: "Sign Out" },
   ];
 
+  const customers = [
+    { name: "David", country: "Italy" },
+    { name: "Amit", country: "India" },
+    { name: "David", country: "Italy" },
+    { name: "Amit", country: "India" },
+    { name: "David", country: "Italy" },
+    { name: "Amit", country: "India" },
+    { name: "David", country: "Italy" },
+    { name: "Amit", country: "India" },
+  ];
+
   return (
     <div className={styles.container}>
-      {/* ================== Navigation ================== */}
-       <div className={`navigation ${menuActive ? "active" : ""}`}>
+      {/* Navigation */}
+      <div className={`${styles.navigation} ${menuActive ? styles.active : ""}`}>
         <ul>
           {navItems.map((item, index) => (
-            <li key={index}  className={hoveredIndex === index ? "hovered" : ""} onMouseOver={() => setHoveredIndex(index)}>
+            <li  key={index}  className={hoveredIndex === index ? styles.hovered : ""}  onMouseOver={() => setHoveredIndex(index)}>
               <a href="#">
                 <span className={styles.icon}>{item.icon}</span>
                 <span className={styles.title}>{item.title}</span>
@@ -35,10 +47,10 @@ export default function Manager() {
         </ul>
       </div>
 
-      {/* ================== Main ================== */}
-       <div className={`main ${menuActive ? "active" : ""}`}>
+      {/* Main */}
+      <div className={`${styles.main} ${menuActive ? styles.active : ""}`}>
         <div className={styles.topbar}>
-          <div className="toggle" onClick={() => setMenuActive(!menuActive)}>
+          <div className={styles.toggle} onClick={() => setMenuActive(!menuActive)}>
             <AlignJustifyIcon size={24} />
           </div>
 
@@ -50,11 +62,12 @@ export default function Manager() {
           </div>
 
           <div className={styles.user}>
-            <Image src="/assets/imgs/customer01.jpg" alt="user" width={40} height={40} />
+            <Image  src="/images/man.jpg"   width={40}  height={40}  alt="user" 
+            />
           </div>
         </div>
 
-        {/* ================== Cards ================== */}
+        {/* Cards */}
         <div className={styles.cardBox}>
           <div className={styles.card}>
             <div>
@@ -97,116 +110,29 @@ export default function Manager() {
           </div>
         </div>
 
-        {/* aqui continua com sua tabela e clientes */}
+        {/* Recent Customers */}
         <div className={styles.recentCustomers}>
           <div className={styles.cardHeader}>
             <h2>Recent Customers</h2>
           </div>
 
           <table>
-            <tr>
-              <td width="60px">
-                <div className={styles.imgBx}>
-                  <Image src="assets/imgs/customer02.jpg" fill alt="" />
-                </div>
-              </td>
-              <td>
-                <h4>
-                  David <br /> <span>Italy</span>
-                </h4>
-              </td>
-            </tr>
-
-            <tr>
-              <td width="60px">
-                <div className={styles.imgBx}>
-                  <Image src="assets/imgs/customer01.jpg" alt="" />
-                </div>
-              </td>
-              <td>
-                <h4>
-                  Amit <br /> <span>India</span>
-                </h4>
-              </td>
-            </tr>
-
-            <tr>
-              <td width="60px">
-                <div className={styles.imgBx}>
-                  <Image src="assets/imgs/customer02.jpg" alt="" />
-                </div>
-              </td>
-              <td>
-                <h4>
-                  David <br /> <span>Italy</span>
-                </h4>
-              </td>
-            </tr>
-
-            <tr>
-              <td width="60px">
-                <div className={styles.imgBx}>
-                  <Image src="assets/imgs/customer01.jpg" alt="" />
-                </div>
-              </td>
-              <td>
-                <h4>
-                  Amit <br /> <span>India</span>
-                </h4>
-              </td>
-            </tr>
-
-            <tr>
-              <td width="60px">
-                <div className={styles.imgBx}>
-                  <Image src="assets/imgs/customer02.jpg" alt="" />
-                </div>
-              </td>
-              <td>
-                <h4>
-                  David <br /> <span>Italy</span>
-                </h4>
-              </td>
-            </tr>
-
-            <tr>
-              <td width="60px">
-                <div className={styles.imgBx}>
-                  <Image src="assets/imgs/customer01.jpg" alt="" />
-                </div>
-              </td>
-              <td>
-                <h4>
-                  Amit <br /> <span>India</span>
-                </h4>
-              </td>
-            </tr>
-
-            <tr>
-              <td width="60px">
-                <div className={styles.imgBx}>
-                  <Image src="assets/imgs/customer01.jpg" alt="" />
-                </div>
-              </td>
-              <td>
-                <h4>
-                  David <br /> <span>Italy</span>
-                </h4>
-              </td>
-            </tr>
-
-            <tr>
-              <td width="60px">
-                <div className={styles.imgBx}>
-                  <Image src="assets/imgs/customer02.jpg" alt="" />
-                </div>
-              </td>
-              <td>
-                <h4>
-                  Amit <br /> <span>India</span>
-                </h4>
-              </td>
-            </tr>
+            <tbody>
+              {customers.map((customer, index) => (
+                <tr key={index}>
+                  <td width="60px">
+                    <div className={styles.imgBx}>
+                      <Image src="/images/man.jpg"  width={50} height={50} alt="" />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>
+                      {customer.name} <br /> <span>{customer.country}</span>
+                    </h4>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       </div>

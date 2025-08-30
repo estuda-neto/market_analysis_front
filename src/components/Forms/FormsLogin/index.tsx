@@ -1,3 +1,4 @@
+"use client";
 import clsx from "clsx";
 import Link from "next/link";
 import {useForm } from "react-hook-form";
@@ -6,7 +7,6 @@ import { signIn } from "next-auth/react";
 import { useId } from "react";
 import styles from "./formlogin.module.css";
 import { SubButton } from "@/components/Shared/SubButton";
-// import { ButtonDeslogar } from "../../ButtonDeslogar";
 
 type TypeLoginData = { email: string; password: string };
 
@@ -23,10 +23,6 @@ export const FormLogin: React.FC = () => {
       toast.error(error instanceof Error ? error.message : "Erro ao autenticar");
     }
   };
-
-  // if (pathname.includes("/manager")) {
-  //   return <ButtonDeslogar/>;
-  // }
 
   return (
     <form onSubmit={handleSubmit(handleSubmitForm)} className={clsx(styles.container)}>
