@@ -3,10 +3,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./../globals.css";
 import { ThemeInitializer } from "@/components/ThemeInitializer";
 import { ToastContainer } from "react-toastify";
-import { Header } from "@/components/Shared";
+import { Header, TikerLeft } from "@/components/Shared";
 import { MainLayout } from "@/components/Shared/Layouts/Main";
 import { Footer } from "@/components/Shared/Footer";
 import { cookies } from "next/headers";
+import { MainMiniLayout } from "@/components/Shared/Layouts/MainMiniLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,8 +36,11 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         <ThemeInitializer />
         <MainLayout>
           <Header />
-          <ToastContainer />
-            {children}
+          <MainMiniLayout>
+            <TikerLeft />
+            <ToastContainer />
+          </MainMiniLayout>
+          {children}
           <Footer />
         </MainLayout>
       </body>

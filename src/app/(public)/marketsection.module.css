@@ -1,0 +1,102 @@
+.container {
+  width: 100%;
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 4rem 1rem;
+  gap: 3rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.containerColum {
+  width: 100%; 
+  background-color: var(--bg-section-two-color);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 4rem 30px;
+  box-sizing: border-box;
+}
+
+.containerColum h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.containerColum p {
+  text-align: justify;
+  line-height: 1.4;
+  text-indent: 2em;
+  margin-bottom: 0.3rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .textWrapper {
+    margin: 0; /* remove margin fixa */
+    width: 90%; /* ocupa quase toda largura */
+    max-width: 700px;
+    text-align: center;
+  }
+
+  .containerColum {
+    padding: 2rem 30px; /* mantém 30px de margem mesmo no celular */
+  }
+
+  .containerColum h2 {
+    font-size: 1.7rem;
+  }
+
+  .containerColum p {
+    font-size: 1rem;
+    text-indent: 1.5em; /* menor indentação em telas pequenas */
+  }
+}
+
+.imageWrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+}
+
+.textWrapper {
+  flex: 1;
+  display: flex;
+  max-width: 700px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ctaButton {
+  padding: 0.9rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  background: #222a7d;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+}

@@ -13,7 +13,6 @@ export const Header: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
 
-  // Detecta largura da tela
   useEffect(() => {
     const checkSize = () => setIsMobile(window.innerWidth < 1024);
     checkSize();
@@ -21,7 +20,6 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener("resize", checkSize);
   }, []);
 
-  // Fecha no ESC
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
@@ -30,7 +28,6 @@ export const Header: React.FC = () => {
     return () => document.removeEventListener("keydown", onKey);
   }, []);
 
-  // Fecha clicando fora do painel
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       if (!open) return;

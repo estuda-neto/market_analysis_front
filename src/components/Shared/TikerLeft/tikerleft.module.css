@@ -1,0 +1,36 @@
+.tickerWrapper {
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+  overflow: hidden;
+  background-color: #222;
+  color: #fff;
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+
+.tichercontainer{
+  display: flex;
+  gap: 10px;
+}
+
+.ticker {
+  display: flex;
+  white-space: nowrap;
+  animation: tickerMove 20s linear infinite;
+}
+
+.tickerItem {
+  display: inline-block;
+  margin-right: 30px;
+}
+
+/* Animação da barra rolando da direita para a esquerda */
+@keyframes tickerMove {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

@@ -2,22 +2,23 @@
 
 import styles from "./manager.module.css";
 import { useState } from "react";
-import { AlignJustifyIcon, AppleIcon, BadgeQuestionMarkIcon, BanknoteIcon, EyeIcon, HouseIcon, LockIcon, LogOutIcon, MessageCircleIcon, MessageCircleMoreIcon, SearchIcon, SettingsIcon, ShoppingCartIcon, UserIcon} from "lucide-react";
+import { AlignJustifyIcon, BadgeQuestionMarkIcon, BanknoteIcon, ChartNetworkIcon, ChartNoAxesColumnIcon, ChartNoAxesCombinedIcon, EyeIcon, HouseIcon, LockIcon, LogOutIcon, MessageCircleIcon, MessageCircleMoreIcon, SearchIcon, SettingsIcon, ShoppingCartIcon, UserIcon} from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Manager() {
   const [menuActive, setMenuActive] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const navItems = [
-    { icon: <AppleIcon size={24} />, title: "Brand Name" },
-    { icon: <HouseIcon size={24} />, title: "Dashboard" },
-    { icon: <UserIcon size={24} />, title: "Customers" },
-    { icon: <MessageCircleIcon size={24} />, title: "Messages" },
-    { icon: <BadgeQuestionMarkIcon size={24} />, title: "Help" },
-    { icon: <SettingsIcon size={24} />, title: "Settings" },
-    { icon: <LockIcon size={24} />, title: "Password" },
-    { icon: <LogOutIcon size={24} />, title: "Sign Out" },
+    { icon: <ChartNoAxesCombinedIcon size={28} />, title: "Market Analysis" },
+    { icon: <HouseIcon size={28} />, title: "Dashboard" },
+    { icon: <UserIcon size={28} />, title: "Customers" },
+    { icon: <MessageCircleIcon size={28} />, title: "Messages" },
+    { icon: <BadgeQuestionMarkIcon size={28} />, title: "Help" },
+    { icon: <SettingsIcon size={28} />, title: "Settings" },
+    { icon: <LockIcon size={28} />, title: "Password" },
+    { icon: <LogOutIcon size={28} />, title: "Sign Out" },
   ];
 
   const customers = [
@@ -37,11 +38,11 @@ export default function Manager() {
       <div className={`${styles.navigation} ${menuActive ? styles.active : ""}`}>
         <ul>
           {navItems.map((item, index) => (
-            <li  key={index}  className={hoveredIndex === index ? styles.hovered : ""}  onMouseOver={() => setHoveredIndex(index)}>
-              <a href="#">
+            <li  key={index} className={hoveredIndex === index ? styles.hovered : ""}  onMouseOver={() => setHoveredIndex(index)}>
+              <Link href={"#"}>
                 <span className={styles.icon}>{item.icon}</span>
                 <span className={styles.title}>{item.title}</span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -51,19 +52,18 @@ export default function Manager() {
       <div className={`${styles.main} ${menuActive ? styles.active : ""}`}>
         <div className={styles.topbar}>
           <div className={styles.toggle} onClick={() => setMenuActive(!menuActive)}>
-            <AlignJustifyIcon size={24} />
+            <AlignJustifyIcon size={28} />
           </div>
 
           <div className={styles.search}>
             <label>
               <input type="text" placeholder="Search here" />
-              <SearchIcon size={24} />
+              <SearchIcon size={28} className={styles.ioncon}/>
             </label>
           </div>
 
           <div className={styles.user}>
-            <Image  src="/images/man.jpg"   width={40}  height={40}  alt="user" 
-            />
+            <Image  src="/images/man.jpg"   width={40}  height={40}  alt="user" />
           </div>
         </div>
 
@@ -75,7 +75,7 @@ export default function Manager() {
               <div className={styles.cardName}>Daily Views</div>
             </div>
             <div className={styles.iconBx}>
-              <EyeIcon size={24} />
+              <EyeIcon size={28} />
             </div>
           </div>
 
@@ -85,7 +85,7 @@ export default function Manager() {
               <div className={styles.cardName}>Sales</div>
             </div>
             <div className={styles.iconBx}>
-              <ShoppingCartIcon size={24} />
+              <ShoppingCartIcon size={28} />
             </div>
           </div>
 
@@ -95,7 +95,7 @@ export default function Manager() {
               <div className={styles.cardName}>Comments</div>
             </div>
             <div className={styles.iconBx}>
-              <MessageCircleMoreIcon size={24} />
+              <MessageCircleMoreIcon size={28} />
             </div>
           </div>
 
@@ -105,7 +105,7 @@ export default function Manager() {
               <div className={styles.cardName}>Earning</div>
             </div>
             <div className={styles.iconBx}>
-              <BanknoteIcon size={24} />
+              <BanknoteIcon size={28} />
             </div>
           </div>
         </div>

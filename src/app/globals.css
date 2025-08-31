@@ -41,7 +41,10 @@ svg {
 /* Tema padrão (claro) */
 :root {
   --bg-color: #ffffff;
-  --bg-footer-color: #d1d5db;
+  --bg-header-color: #ffffff;
+  --bg-section-two-color: #ffffff;
+  --bg-footer-color: #D6DCF5; 
+
   --text-color: #262681;
   --border-color: #d1d5db;
   --primary-color: #3b82f6;
@@ -49,8 +52,11 @@ svg {
 
 /* Tema escuro */
 .dark {
-  --bg-color: #1f2937;
-  --bg-footer-color: #222325;
+  --bg-color: #2a2a2a;
+  --bg-header-color:#1f1f1f;
+  --bg-section-two-color: #333333;
+  --bg-footer-color:#121212;
+
   --text-color: #ffffff;
   --border-color: #374151;
   --primary-color: #60a5fa;

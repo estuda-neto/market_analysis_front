@@ -1,5 +1,6 @@
 import { Header } from "./Header";
 import { NavBar } from "./Navbar";
 import { Logo } from "./Logo";
+import {TikerLeft} from "./TikerLeft"
 
-export {Header,NavBar,Logo};
+export {Header,NavBar,Logo,TikerLeft};
