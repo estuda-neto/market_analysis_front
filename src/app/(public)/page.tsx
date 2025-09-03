@@ -6,13 +6,7 @@ export default function Home() {
     <div className="cf">
       <section className={styles.container}>
         <div className={styles.imageWrapper}>
-          <Image
-            src="/images/bg.png"
-            width={500}
-            height={250}
-            className={styles.image}
-            alt="backgroud"
-          />
+          <Image src="/images/bg.png" width={500} height={250} className={styles.image} alt="backgroud"/>
         </div>
 
         <div className={styles.textWrapper}>

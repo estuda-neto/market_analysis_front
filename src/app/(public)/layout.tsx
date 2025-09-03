@@ -34,15 +34,15 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <html lang="pt-BR" className={theme === "dark" ? "dark" : ""} data-testid="root-layout">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeInitializer />
-        <MainLayout>
-          <Header />
-          <MainMiniLayout>
-            <TikerLeft />
-            <ToastContainer />
-          </MainMiniLayout>
-          {children}
-          <Footer />
-        </MainLayout>
+          <MainLayout>
+            <Header />
+            <MainMiniLayout>
+              <TikerLeft />
+              <ToastContainer />
+            </MainMiniLayout>
+            {children}
+            <Footer />
+          </MainLayout>
       </body>
     </html>
   );

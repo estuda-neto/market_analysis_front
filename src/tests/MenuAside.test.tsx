@@ -1,21 +1,33 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { MenuAside } from "@/components/Shared";
+import { MenuAside } from "@/components/Shared/MenuAside";
+import { MenuProvider } from "@/contexts/manager_context";
 
-jest.mock("next/link", () => {
-  return ({ children, href }: { children: React.ReactNode; href: string }) => ( <a href={href}>{children}</a>);
-});
+jest.mock("next/link", () => ({
+  __esModule: true,
+  default: ({ children, href }: { children: React.ReactNode; href: string }) => (
+    <a href={href}>{children}</a>
+  ),
+}));
 
 describe("MenuAside", () => {
-  it("deve renderizar todos os itens do menu", () => {
-    render(<MenuAside />);
-    const items = ["Market Analysis","Dashboard","Customers","Messages","Help","Settings","Password","Sign Out"];
+  const renderWithProvider = () =>
+    render(
+      <MenuProvider>
+        <MenuAside />
+      </MenuProvider>
+    );
 
-    items.forEach((title) => {expect(screen.getByText(title)).toBeInTheDocument();});
+  it("deve renderizar todos os itens do menu", () => {
+    renderWithProvider();
+    const items = ["Market Analysis", "Dashboard", "Customers", "Messages", "Help", "Settings", "Password"];
+    items.forEach((title) => {
+      expect(screen.getByText(title)).toBeInTheDocument();
+    });
   });
 
   it("deve alternar a classe 'active' quando o botão de toggle for clicado", () => {
-    render(<MenuAside />);
+    renderWithProvider();
 
     const toggleButton = screen.getByRole("button");
     const navigation = toggleButton.closest("div")!;
@@ -30,17 +42,14 @@ describe("MenuAside", () => {
   });
 
   it("deve converter os links para snake_case corretamente", () => {
-    render(<MenuAside />);
+    renderWithProvider();
 
     const link = screen.getByText("Market Analysis").closest("a");
     expect(link).toHaveAttribute("href", "market_analysis");
-
-    const signOutLink = screen.getByText("Sign Out").closest("a");
-    expect(signOutLink).toHaveAttribute("href", "sign_out");
   });
 
   it("deve aplicar classe de hover ao passar o mouse sobre um item", () => {
-    render(<MenuAside />);
+    renderWithProvider();
 
     const dashboardItem = screen.getByText("Dashboard").closest("li")!;
     expect(dashboardItem.className).not.toContain("hovered");

@@ -2,10 +2,11 @@
 import Link from "next/link";
 import styles from "./aside.module.css";
 import { useState } from "react";
-import { AlignJustifyIcon, BadgeQuestionMarkIcon, ChartNoAxesCombinedIcon, HouseIcon, LockIcon, LogOutIcon, MessageCircleIcon, SettingsIcon, UserIcon} from "lucide-react";
+import { AlignJustifyIcon, BadgeQuestionMarkIcon, ChartNoAxesCombinedIcon, HouseIcon, LockIcon, MessageCircleIcon, SettingsIcon, UserIcon} from "lucide-react";
+import { useMenu } from "../../../contexts/manager_context";
 
 export const MenuAside: React.FC = () => {
-  const [menuActive, setMenuActive] = useState(false);
+  const { menuActive, setMenuActive } = useMenu();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const navItems = [
@@ -16,7 +17,6 @@ export const MenuAside: React.FC = () => {
     { icon: <BadgeQuestionMarkIcon size={28} />, title: "Help" },
     { icon: <SettingsIcon size={28} />, title: "Settings" },
     { icon: <LockIcon size={28} />, title: "Password" },
-    { icon: <LogOutIcon size={28} />, title: "Sign Out" },
   ];
   
   const handleConvertToSnakeCase = (str: string) => str.trim().toLowerCase().replace(/[\s\-]+/g, "_");
