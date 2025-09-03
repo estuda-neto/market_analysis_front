@@ -1,0 +1,153 @@
+.navigation {
+  width: 300px;
+  height: 100%;
+  position: relative;
+  background-color: #262681;
+  transition: width 0.5s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  align-self: flex-start;
+  margin: 10px 0;
+  color: white;
+  border: none;
+  background: transparent;
+}
+
+.navigation.active {
+  width: 80px;
+}
+
+.navigation ul {
+  flex: 1;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--bg-color);
+}
+
+.navigation ul li a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  padding: 0;
+  width: 100%;
+}
+
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue);
+}
+
+.navigation ul li a .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 60px;
+  height: 60px;
+}
+
+.navigation ul li a .title {
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  white-space: nowrap;
+  transition: opacity 0.3s;
+}
+
+/* Quando o menu estiver recolhido, esconder os títulos */
+.navigation.active ul li a .title {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* --------- curve outside ---------- */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px  var(--bg-color);
+  pointer-events: none;
+}
+
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--bg-color);
+  pointer-events: none;
+}
+
+/* Responsividade */
+@media (max-width: 991px) {
+  .navigation {
+    position: fixed;
+    left: -300px;
+    z-index: 1000;
+    transition: left 0.5s;
+  }
+  
+  .navigation.active {
+    width: 300px;
+    left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .navigation {
+    width: 100%;
+    left: -100%;
+  }
+  
+  .navigation.active {
+    width: 100%;
+    left: 0;
+  }
+  
+  .toggle {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1001;
+    background-color: #262681;
+    border-radius: 50%;
+  }
+}

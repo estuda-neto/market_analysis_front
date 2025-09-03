@@ -1,25 +1,8 @@
-"use client";
-
+import {BanknoteIcon, EyeIcon, MessageCircleMoreIcon, SearchIcon, ShoppingCartIcon} from "lucide-react";
 import styles from "./manager.module.css";
-import { useState } from "react";
-import { AlignJustifyIcon, BadgeQuestionMarkIcon, BanknoteIcon, ChartNetworkIcon, ChartNoAxesColumnIcon, ChartNoAxesCombinedIcon, EyeIcon, HouseIcon, LockIcon, LogOutIcon, MessageCircleIcon, MessageCircleMoreIcon, SearchIcon, SettingsIcon, ShoppingCartIcon, UserIcon} from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Manager() {
-  const [menuActive, setMenuActive] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-  const navItems = [
-    { icon: <ChartNoAxesCombinedIcon size={28} />, title: "Market Analysis" },
-    { icon: <HouseIcon size={28} />, title: "Dashboard" },
-    { icon: <UserIcon size={28} />, title: "Customers" },
-    { icon: <MessageCircleIcon size={28} />, title: "Messages" },
-    { icon: <BadgeQuestionMarkIcon size={28} />, title: "Help" },
-    { icon: <SettingsIcon size={28} />, title: "Settings" },
-    { icon: <LockIcon size={28} />, title: "Password" },
-    { icon: <LogOutIcon size={28} />, title: "Sign Out" },
-  ];
 
   const customers = [
     { name: "David", country: "Italy" },
@@ -33,28 +16,10 @@ export default function Manager() {
   ];
 
   return (
-    <div className={styles.container}>
-      {/* Navigation */}
-      <div className={`${styles.navigation} ${menuActive ? styles.active : ""}`}>
-        <ul>
-          {navItems.map((item, index) => (
-            <li  key={index} className={hoveredIndex === index ? styles.hovered : ""}  onMouseOver={() => setHoveredIndex(index)}>
-              <Link href={"#"}>
-                <span className={styles.icon}>{item.icon}</span>
-                <span className={styles.title}>{item.title}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-
+    <div className={styles.container} style={{width:"100%",height:"100%"}}>
       {/* Main */}
-      <div className={`${styles.main} ${menuActive ? styles.active : ""}`}>
+      <div className={`${styles.main} ${styles.active}`}>
         <div className={styles.topbar}>
-          <div className={styles.toggle} onClick={() => setMenuActive(!menuActive)}>
-            <AlignJustifyIcon size={28} />
-          </div>
-
           <div className={styles.search}>
             <label>
               <input type="text" placeholder="Search here" />

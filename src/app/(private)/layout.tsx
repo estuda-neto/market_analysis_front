@@ -5,6 +5,9 @@ import { ThemeInitializer } from "@/components/ThemeInitializer";
 import { ToastContainer } from "react-toastify";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { Header, MenuAside } from "@/components/Shared";
+import { ManagerLayout } from "@/components/Shared/Layouts/Manager";
+import { Footer } from "@/components/Shared/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +34,10 @@ function getThemeFromCookie(cookie?: string): "light" | "dark" {
   return match ? (match[1] as "light" | "dark") : "light";
 }
 
-export default async function RootLayout({children,cookies}: RootLayoutProps) {
+export default async function RootLayout({
+  children,
+  cookies,
+}: RootLayoutProps) {
   const theme = getThemeFromCookie(cookies);
   const session = await getServerSession();
 
@@ -41,22 +47,19 @@ export default async function RootLayout({children,cookies}: RootLayoutProps) {
   }
 
   return (
-    <html lang="pt-BR" className={theme === "dark" ? "dark" : ""} data-testid="root-layout-manage">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* <Header bg={"white"}>
-                    <Logo />
-                    <NavBar />
-                </Header> */}
+    <html lang="pt-BR" className={theme === "dark" ? "dark" : ""} data-testid="root-layout-manage" style={{ height: '100%' }} >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} style={{ height: '100%', margin: 0 }}>
         <ThemeInitializer />
-        <ToastContainer />
-        {/* <LayoutManager>
-                    <SideBar username={user?.name ?? "guest"} img={user?.image ?? "avatar.svg"} /> */}
-        {/* <LoadContext> */}
-        {children}
-        {/* </LoadContext> */}
-        {/* </LayoutManager> */}
-        {/* <Footer /> */}
+        <ManagerLayout>
+          <Header />
+          <ToastContainer />
+          <MenuAside />
+            {children}
+          <Footer />
+        </ManagerLayout>
       </body>
     </html>
   );
 }
+
+{/* <SideBar username={user?.name ?? "guest"} img={user?.image ?? "avatar.svg"} /> */}

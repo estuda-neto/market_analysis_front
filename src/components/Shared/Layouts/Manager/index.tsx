@@ -1,43 +1,26 @@
 "use client";
+
 import clsx from "clsx";
-import styles from "./managerlayout.module.css";
-import { useEffect, useState, type ReactNode } from "react";
+import styles from "./ml.module.css";
+import { type ReactNode } from "react";
 
-type TypeProps = { children: ReactNode[] };
+type ManagerLayoutProps = {
+  /** [0] header
+   *  [1] toast,
+   *  [2] sidebar, [3] conteúdo,
+   *  [4] footer,**/
+  children: [ReactNode, ReactNode, ReactNode, ReactNode, ReactNode];
+};
 
-export const ManagerLayout: React.FC<TypeProps> = ({ children }) => {
-//   const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     supabase.auth.getSession().then(({ data }) => {
-//       setSession(data.session ?? null);
-//       setLoading(false);
-//     });
-
-//     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-//         setSession(session);
-//         setLoading(false);
-//       }
-//     );
-
-//     return () => {
-//       listener?.subscription.unsubscribe();
-//     };
-//   }, []);
-
-//   if (loading) {
-//     return <div>Carregando...</div>;
-//   }
-
-//   if (!session) {
-//     return <Navigate to="/" replace />;
-//   }
+export const ManagerLayout: React.FC<ManagerLayoutProps> = ({ children }) => {
+  const [header, toastify, sidebar, content, footer] = children;
 
   return (
-    <div className={clsx(`${styles.layout}`)}>
-      <div className={clsx(`${styles.side}`)}>{children[0]}</div>
-      <div className={clsx(`${styles.content}`)}>{children[1]}</div>
+    <div className={clsx(styles.layout)}>
+      <header className={clsx(styles.header)}>{header}</header>
+      <div className={clsx(styles.toastify)}>{toastify}</div>
+      <aside className={clsx(styles.side)}>{sidebar}</aside><main className={clsx(styles.content)}>{content}</main>
+      <footer className={clsx(styles.footer)}>{footer}</footer>
     </div>
   );
 };
