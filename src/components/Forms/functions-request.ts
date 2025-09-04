@@ -121,9 +121,7 @@ export interface IFormInput {
     password: string;
     repassword: string;
 }
-export async function registerUsuarioServerSideProps(
-    data: IFormInput
-): Promise<Response> {
+export async function registerUsuarioServerSideProps(data: IFormInput): Promise<Response> {
     try {
         const response = await fetch(URL_BACKEND + "/auth/register", {
             method: "POST",

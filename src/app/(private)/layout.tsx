@@ -9,6 +9,7 @@ import { Header, MenuAside } from "@/components/Shared";
 import { ManagerLayout } from "@/components/Shared/Layouts/Manager";
 import { Footer } from "@/components/Shared/Footer";
 import { MenuProvider } from "@/contexts/manager_context";
+import { LayoutCaptureError } from "@/components/Shared/Layouts/Manager/layer_cap_error";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -53,7 +54,9 @@ export default async function RootLayout({children,cookies}: RootLayoutProps) {
             <Header />
             <ToastContainer />
             <MenuAside />
+            <LayoutCaptureError>
               {children}
+            </LayoutCaptureError>
             <Footer />
           </ManagerLayout>
           </MenuProvider>
@@ -61,5 +64,3 @@ export default async function RootLayout({children,cookies}: RootLayoutProps) {
     </html>
   );
 }
-
-{/* <SideBar username={user?.name ?? "guest"} img={user?.image ?? "avatar.svg"} /> */}

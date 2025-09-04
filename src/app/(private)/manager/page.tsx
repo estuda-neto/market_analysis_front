@@ -3,7 +3,6 @@ import styles from "./manager.module.css";
 import Image from "next/image";
 
 export default function Manager() {
-
   const customers = [
     { name: "David", country: "Italy" },
     { name: "Amit", country: "India" },
